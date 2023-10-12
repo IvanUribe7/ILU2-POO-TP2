@@ -27,7 +27,7 @@ public class BoundaryEmmenager {
 					break;
 
 				case 2:
-					//TODO a completer
+					emmenagerGaulois(nomVisiteur);
 					break;
 
 				default:
@@ -39,6 +39,23 @@ public class BoundaryEmmenager {
 		}
 	}
 
+	private void emmenagerGaulois(String nomVisiteur) {
+		StringBuilder questionForce = new StringBuilder();
+		questionForce.append("Bienvenue villageois Bonemine" + "\n");
+		questionForce.append("Quelle est votre force ?" + "\n");
+		int choixUtilisateur = -1;
+		do {
+			choixUtilisateur = Clavier.entrerEntier(questionForce.toString());
+			if(choixUtilisateur >= 0) {
+				ControlEmmenager controlEmmenager2 = new ControlEmmenager(null);
+				controlEmmenager2.ajouterGaulois(nomVisiteur, choixUtilisateur);
+			}else {
+				System.out
+			.println("Vous devez choisir un nombres non negatif!" + "\n");
+			}	
+		} while (choixUtilisateur < 0);
+	}
+	
 	private void emmenagerDruide(String nomVisiteur) {
 		//TODO a completer
 	}
