@@ -41,22 +41,62 @@ public class BoundaryEmmenager {
 
 	private void emmenagerGaulois(String nomVisiteur) {
 		StringBuilder questionForce = new StringBuilder();
-		questionForce.append("Bienvenue villageois Bonemine" + "\n");
+		questionForce.append("Bienvenue villageois " + nomVisiteur + "\n");
 		questionForce.append("Quelle est votre force ?" + "\n");
 		int choixUtilisateur = -1;
 		do {
 			choixUtilisateur = Clavier.entrerEntier(questionForce.toString());
 			if(choixUtilisateur >= 0) {
-				ControlEmmenager controlEmmenager2 = new ControlEmmenager(null);
-				controlEmmenager2.ajouterGaulois(nomVisiteur, choixUtilisateur);
+				controlEmmenager.ajouterGaulois(nomVisiteur, choixUtilisateur);
 			}else {
 				System.out
-			.println("Vous devez choisir un nombres non negatif!" + "\n");
+			.println("Vous devez choisir un nombre non negatif!" + "\n");
 			}	
 		} while (choixUtilisateur < 0);
 	}
 	
 	private void emmenagerDruide(String nomVisiteur) {
-		//TODO a completer
+		StringBuilder questionForce = new StringBuilder();
+		StringBuilder questionForcePotion = new StringBuilder();
+		StringBuilder questionForcePotionMax = new StringBuilder();
+		StringBuilder forceNegatif = new StringBuilder();
+		
+		forceNegatif.append("Vous devez choisir un nombre non negatif!" + "\n");
+		questionForce.append("Bienvenue villageois " + nomVisiteur + "\n" +
+				"Quelle est votre force ?" + "\n");
+		
+		int choixUtilisateurForce = -1;
+		do {
+			choixUtilisateurForce = Clavier.entrerEntier(questionForce.toString());
+			if(choixUtilisateurForce >= 0){
+				forceNegatif.toString();
+			}
+			
+		} while (choixUtilisateurForce < 0);
+		
+		questionForcePotion.append("Quelle est la force de potion la\r\n"
+				+ "plus faible que vous produisez ?");
+		
+		int choixUtilisateurForcePotion = -1;
+		do {
+			choixUtilisateurForcePotion = Clavier.entrerEntier(questionForcePotion.toString());
+			if(choixUtilisateurForcePotion < 0){
+				forceNegatif.toString();
+			}	
+		} while (choixUtilisateurForcePotion < 0);
+			
+		questionForcePotionMax.append("Quelle est la force de potion la\r\n"
+				+ "plus forte que vous produisez ?");
+		
+		int choixUtilisateurForcePotionMax = -1;
+		do {
+			choixUtilisateurForcePotionMax = Clavier.entrerEntier(questionForcePotionMax.toString());
+			if( choixUtilisateurForcePotionMax < 0 || choixUtilisateurForcePotionMax < choixUtilisateurForcePotion){
+				forceNegatif.toString();
+			}else {
+				controlEmmenager.ajouterDruide(nomVisiteur, choixUtilisateurForce, choixUtilisateurForcePotion, choixUtilisateurForcePotionMax);
+			}	
+		} while (choixUtilisateurForcePotionMax < 0 || choixUtilisateurForcePotionMax < choixUtilisateurForcePotion);
+		
 	}
 }
